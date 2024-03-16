@@ -1,5 +1,5 @@
 <?php
-require_once "models/client.php";
+require_once "../models/client.php";
 
 class ClientController
 {

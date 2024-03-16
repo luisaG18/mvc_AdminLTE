@@ -29,12 +29,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -49,34 +43,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
-                </div>
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../../index.php" class="nav-link">
                                 <i class="fa-solid fa-house"></i>
                                 <p>
                                     Inicio
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="views/pages/createClient.php" class="nav-link">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <p>
-                                    Crear cliente
                                 </p>
                             </a>
                         </li>
@@ -107,38 +83,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form>
+                                    <form action="../../controllers/clientController.php" method="POST">
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                                                <label>Tipo de documento</label>
+                                                <select class="form-control">
+                                                    <option>NIT</option>
+                                                    <option>CC</option>
+                                                    <option>CE</option>
+                                                    <option>RUT</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                                <label for="exampleInputEmail1">Número de documento</label>
+                                                <input class="form-control" type="number" placeholder="Ingrese su número de documento">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputFile">File input</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="exampleInputFile" />
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                    </div>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">Upload</span>
-                                                    </div>
-                                                </div>
+                                                <label for="exampleInputEmail1">Nombre</label>
+                                                <input class="form-control" type="text" placeholder="Ingrese su nombre">
                                             </div>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Dirección</label>
+                                                <input class="form-control" type="text" placeholder="Ingrese su dirección">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Correo electronico</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nombre persona de contacto</label>
+                                                <input class="form-control" type="text" placeholder="Ingrese el nombre de la persona de contacto">
                                             </div>
                                         </div>
                                         <!-- /.card-body -->
 
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">
-                                                Submit
+                                                Crear cliente
                                             </button>
                                         </div>
                                     </form>
