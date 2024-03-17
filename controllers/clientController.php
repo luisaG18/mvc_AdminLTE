@@ -1,11 +1,24 @@
 <?php
-require_once "../models/client.php";
+require_once __DIR__ . "/../models/client.php";
 
 class ClientController
 {
-    public static function getClients()
+    private $client;
+
+    public function __construct()
     {
-        $clients = Client::getClients();
+        $this->client = new Client;
+    }
+
+    public function getClients()
+    {
+        $clients = $this->client->getClients();
         return $clients;
+    }
+
+    public function createClient()
+    {
+        $result = $this->client->createClient();
+        return $result;
     }
 }

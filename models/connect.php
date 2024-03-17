@@ -4,7 +4,15 @@ require_once "config.php";
 
 class Connect
 {
-    public static function connect()
+    private $connection;
+    private static $instance;
+
+    public function __construct()
+    {
+        $this->connect();
+    }
+
+    public function connect()
     {
         // Connect to the database
         $mysqli = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
@@ -13,6 +21,19 @@ class Connect
             echo "Error en la conexión: " . $mysqli->connect_error;
             exit();
         }
-        return $mysqli;
+        $this->connection = $mysqli;
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    public static function getInstance()
+    {
+        if (static::$instance === null) {
+            static::$instance = new Connect();
+        }
+        return static::$instance;
     }
 }

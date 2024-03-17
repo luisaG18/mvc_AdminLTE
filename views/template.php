@@ -1,6 +1,7 @@
 <?php
 include_once "controllers/ClientController.php";
-$clients = ClientController::getClients();
+$clientsController = new ClientController;
+$clients = $clientsController->getClients()
 ?>
 
 <!DOCTYPE html>

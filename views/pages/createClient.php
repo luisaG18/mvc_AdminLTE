@@ -83,11 +83,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="../../controllers/clientController.php" method="POST">
+                                    <form action="../../?action=create" method="POST">
                                         <div class="card-body">
                                             <div class="form-group">
+                                                <!--  <input type="hidden" name="action" value="createClient"> -->
                                                 <label>Tipo de documento</label>
-                                                <select class="form-control">
+                                                <select class="form-control" name="tipo_documento">
                                                     <option>NIT</option>
                                                     <option>CC</option>
                                                     <option>CE</option>
@@ -96,23 +97,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Número de documento</label>
-                                                <input class="form-control" type="number" placeholder="Ingrese su número de documento">
+                                                <input class="form-control" type="number" name="numero_documento" placeholder="Ingrese su número de documento">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nombre</label>
-                                                <input class="form-control" type="text" placeholder="Ingrese su nombre">
+                                                <input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Dirección</label>
-                                                <input class="form-control" type="text" placeholder="Ingrese su dirección">
+                                                <input class="form-control" type="text" name="direccion" placeholder="Ingrese su dirección">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Teléfono</label>
+                                                <input class="form-control" type="number" name="telefono" placeholder="Ingrese su número de documento">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Correo electronico</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo" />
+                                                <input type="email" class="form-control" name="email" placeholder="Ingrese su correo" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nombre persona de contacto</label>
-                                                <input class="form-control" type="text" placeholder="Ingrese el nombre de la persona de contacto">
+                                                <input class="form-control" type="text" name="nombre_contacto" placeholder="Ingrese el nombre de la persona de contacto">
                                             </div>
                                         </div>
                                         <!-- /.card-body -->
