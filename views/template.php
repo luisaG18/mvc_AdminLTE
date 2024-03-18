@@ -126,10 +126,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>' . $client['email'] . '</td>
                     <td>' . $client['nombre_contacto'] . '</td>
                     <td>
-                    <a href="consultarclient.php?id=' . $client['numero_documento'] . '" role="button">
+                    <a href="views/pages/updateClient.php?id=' . $client['numero_documento'] . '" role="button">
                     <i class="fa-regular fa-pen-to-square"></i>
                     </a> 
-                    <a href="eliminarclient.php?id=' . $client['numero_documento'] . '">
+                    <a href="?action=delete&id=' . $client['numero_documento'] . '">
                     <i class="fa-regular fa-trash-can"></i>
                     </a>
                     </td>

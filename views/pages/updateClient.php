@@ -1,3 +1,8 @@
+<?php
+include_once "../../controllers/ClientController.php";
+$clientsController = new ClientController;
+$client = $clientsController->getClient();
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -70,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Crear Cliente</h1>
+                            <h1>Actualizar Cliente</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -83,47 +88,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="../../?action=create" method="POST">
+                                    <form action="../../?action=update" method="POST">
                                         <div class="card-body">
-                                            <div class="form-group">
-                                                <label>Tipo de documento</label>
-                                                <select class="form-control" name="tipo_documento">
-                                                    <option>NIT</option>
-                                                    <option>CC</option>
-                                                    <option>CE</option>
-                                                    <option>RUT</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Número de documento</label>
-                                                <input class="form-control" type="number" name="numero_documento" placeholder="Ingrese su número de documento">
-                                            </div>
+                                            <input type="hidden" name="tipo_documento" value="<?php echo $client['tipo_documento'] ?>">
+                                            <input type="hidden" name="numero_documento" value="<?php echo $client['numero_documento'] ?>">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nombre</label>
-                                                <input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre">
+                                                <input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre" value="<?php echo $client['nombre'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Dirección</label>
-                                                <input class="form-control" type="text" name="direccion" placeholder="Ingrese su dirección">
+                                                <input class="form-control" type="text" name="direccion" placeholder="Ingrese su dirección" value="<?php echo $client['direccion'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Teléfono</label>
-                                                <input class="form-control" type="number" name="telefono" placeholder="Ingrese su número de documento">
+                                                <input class="form-control" type="number" name="telefono" placeholder="Ingrese su teléfono" value="<?php echo $client['telefono'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Correo electronico</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Ingrese su correo" />
+                                                <input type="email" class="form-control" name="email" placeholder="Ingrese su correo" value="<?php echo $client['email'] ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nombre persona de contacto</label>
-                                                <input class="form-control" type="text" name="nombre_contacto" placeholder="Ingrese el nombre de la persona de contacto">
+                                                <input class="form-control" type="text" name="nombre_contacto" placeholder="Ingrese el nombre de la persona de contacto" value="<?php echo $client['nombre_contacto'] ?>">
                                             </div>
                                         </div>
                                         <!-- /.card-body -->
 
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">
-                                                Crear cliente
+                                                Actualizar cliente
                                             </button>
                                         </div>
                                     </form>

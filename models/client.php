@@ -24,7 +24,26 @@ class Client
         }
     }
 
-    public function createClient()
+    public function getClient($num_documento)
+    {
+        $sql = "SELECT * FROM clientes WHERE numero_documento=?";
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param(
+            "i",
+            $num_documento
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $client = $result->fetch_assoc();
+            return $client;
+        } else {
+            echo "Error";
+            die();
+        }
+    }
+
+    public function createClient($tipo_documento, $num_documento, $nombre, $direccion, $telefono, $email, $nombre_contacto)
     {
         $sql = "INSERT INTO clientes 
                             (tipo_documento, 
@@ -38,13 +57,13 @@ class Client
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param(
             "sisssss",
-            $_REQUEST['tipo_documento'],
-            $_POST["numero_documento"],
-            $_POST["nombre"],
-            $_POST["direccion"],
-            $_POST["telefono"],
-            $_POST["email"],
-            $_POST["nombre_contacto"]
+            $tipo_documento,
+            $num_documento,
+            $nombre,
+            $direccion,
+            $telefono,
+            $email,
+            $nombre_contacto
         );
         $stmt->execute();
 
@@ -52,6 +71,55 @@ class Client
             return true;
         } else {
             return false;
+            die();
+        }
+    }
+
+    public function updateClient($tipo_documento, $num_documento, $nombre, $direccion, $telefono, $email, $nombre_contacto)
+    {
+        $sql = "UPDATE clientes SET
+                                tipo_documento = ?,
+                                nombre = ?,
+                                direccion = ?,
+                                telefono = ?, 
+                                email = ?, 
+                                nombre_contacto = ?
+                        WHERE numero_documento = ?";
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param(
+            "ssssssi",
+            $tipo_documento,
+            $nombre,
+            $direccion,
+            $telefono,
+            $email,
+            $nombre_contacto,
+            $num_documento
+        );
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+            die();
+        }
+    }
+
+    public function deleteClient($num_documento)
+    {
+        $sql = "DELETE FROM clientes WHERE numero_documento=?";
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param(
+            "i",
+            $num_documento
+        );
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+            die();
         }
     }
 }
