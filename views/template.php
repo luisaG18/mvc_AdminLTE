@@ -113,8 +113,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <th>Número de documento</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
-                                    <th>Email</th>
                                     <th>Teléfono</th>
+                                    <th>Email</th>
                                     <th>Persona de contacto</th>
                                     <th>Acciones</th>
                                   </tr>
@@ -150,8 +150,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <th>Número de documento</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
-                                    <th>Email</th>
                                     <th>Teléfono</th>
+                                    <th>Email</th>
                                     <th>Persona de contacto</th>
                                     <th>Acciones</th>
                                   </tr>
@@ -230,19 +230,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <script src="views/dist/js/adminlte.min.js"></script>
 
             <?php
-            if (isset($_GET['toast']) && $_GET['toast'] == 'creationSuccess') {
+            if (isset($_SESSION["name"]) && $_SESSION["name"] == "creationSuccess") {
+              $_SESSION["name"] = "";
               echo "
                     <script>
                         toastr.success('El cliente se creo correctamente');
                     </script>
                   ";
-            } else if (isset($_GET['toast']) && $_GET['toast'] == 'updateSuccess') {
+            } else if (isset($_SESSION["name"]) && $_SESSION["name"] == "updateSuccess") {
+              $_SESSION["name"] = "";
               echo "
                     <script>
                         toastr.success('El cliente se actualizó correctamente');
                     </script>
                   ";
-            } else if (isset($_GET['toast']) && $_GET['toast'] == 'eliminationSuccess') {
+            } else if (isset($_SESSION["name"]) && $_SESSION["name"] == "eliminationSuccess") {
+              $_SESSION["name"] = "";
               echo "
                     <script>
                         toastr.success('El cliente se eliminó correctamente');

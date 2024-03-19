@@ -1,6 +1,8 @@
 <?php
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'list';
+session_name("TOAST");
+session_start();
 
 switch ($action) {
     case 'create':
@@ -8,11 +10,11 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->createClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list&toast=creationSuccess');
+            $_SESSION["name"] = "creationSuccess";
+            header('Location: /mvc_AdminLTE/?action=list');
         } else {
             $error = "Error al crear el usuario";
             echo $error;
-            // require_once 'ruta/del/error.php'
         }
         break;
     case 'update':
@@ -20,11 +22,11 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->updateClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list&toast=updateSuccess');
+            $_SESSION["name"] = "updateSuccess";
+            header('Location: /mvc_AdminLTE/?action=list');
         } else {
             $error = "Error al actualizar el usuario";
             echo $error;
-            // require_once 'ruta/del/error.php'
         }
         break;
     case 'delete':
@@ -32,11 +34,11 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->deleteClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list&toast=eliminationSuccess');
+            $_SESSION["name"] = "eliminationSuccess";
+            header('Location: /mvc_AdminLTE/?action=list');
         } else {
             $error = "Error al eliminar el usuario";
             echo $error;
-            // require_once 'ruta/del/error.php'
         }
         break;
     case 'list':
