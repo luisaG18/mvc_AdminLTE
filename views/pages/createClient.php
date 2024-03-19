@@ -83,11 +83,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="../../?action=create" method="POST">
+                                    <form id="id-form" action="../../?action=create" method="POST">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label>Tipo de documento</label>
-                                                <select class="form-control" name="tipo_documento">
+                                                <select class="form-control" id="tipo_documento" name="tipo_documento">
+                                                    <option value="">Elige un tipo de documento</option>
                                                     <option>NIT</option>
                                                     <option>CC</option>
                                                     <option>CE</option>
@@ -95,28 +96,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Número de documento</label>
-                                                <input class="form-control" type="number" name="numero_documento" placeholder="Ingrese su número de documento">
+                                                <label>Número de documento</label>
+                                                <input class="form-control" id="numero_documento" type="number" name="numero_documento" placeholder="Ingrese su número de documento">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Nombre</label>
-                                                <input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre">
+                                                <label>Nombre</label>
+                                                <input class="form-control" id="nombre" type="text" name="nombre" placeholder="Ingrese su nombre">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Dirección</label>
-                                                <input class="form-control" type="text" name="direccion" placeholder="Ingrese su dirección">
+                                                <label>Dirección</label>
+                                                <input class="form-control" id="direccion" type="text" name="direccion" placeholder="Ingrese su dirección">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Teléfono</label>
-                                                <input class="form-control" type="number" name="telefono" placeholder="Ingrese su número de documento">
+                                                <label>Teléfono</label>
+                                                <input class="form-control" id="telefono" type="number" name="telefono" placeholder="Ingrese su teléfono">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Correo electronico</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Ingrese su correo" />
+                                                <label>Correo electronico</label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Nombre persona de contacto</label>
-                                                <input class="form-control" type="text" name="nombre_contacto" placeholder="Ingrese el nombre de la persona de contacto">
+                                                <label>Nombre persona de contacto</label>
+                                                <input class="form-control" type="text" id="nombre_contacto" name="nombre_contacto" placeholder="Ingrese el nombre de la persona de contacto">
                                             </div>
                                         </div>
                                         <!-- /.card-body -->
@@ -153,10 +154,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
             <!-- Default to the left -->
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
@@ -171,6 +168,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="../plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../plugins/jquery-validation/additional-methods.min.js"></script>
+
+    <script>
+        $(function() {
+            $('#id-form').validate({
+                rules: {
+                    tipo_documento: {
+                        required: true,
+                    },
+                    numero_documento: {
+                        required: true,
+                        maxlength: 20
+                    },
+                    nombre: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    direccion: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    telefono: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    nombre_contacto: {
+                        required: true,
+                        maxlength: 100
+                    },
+                },
+                messages: {
+                    tipo_documento: {
+                        required: "Por favor seleccione un tipo de documento"
+                    },
+                    numero_documento: {
+                        required: "Por favor ingrese el número del documento",
+                        maxlength: "El documento no debe ser mayor a 20 caracteres"
+                    },
+                    nombre: {
+                        required: "Por favor ingrese el nombre",
+                        maxlength: "El nombre no debe ser mayor a 100 caracteres"
+                    },
+                    direccion: {
+                        required: "Por favor ingrese la dirección",
+                        maxlength: "La dirección no debe ser mayor a 100 caracteres"
+                    },
+                    telefono: {
+                        required: "Por favor ingrese el teléfono",
+                        maxlength: "El télefono no debe ser mayor a 10 caracteres"
+                    },
+                    email: {
+                        required: "Por favor ingrese el correo",
+                        email: "Por favor ingrese un correo válido"
+                    },
+                    nombre_contacto: {
+                        required: "Por favor ingrese el nombre de la persona de contacto",
+                        maxlength: "El nombre no debe ser mayor a 100 caracteres"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

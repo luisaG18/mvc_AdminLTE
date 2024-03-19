@@ -8,7 +8,7 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->createClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list');
+            header('Location: /mvc_AdminLTE/?action=list&toast=creationSuccess');
         } else {
             $error = "Error al crear el usuario";
             echo $error;
@@ -20,7 +20,7 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->updateClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list');
+            header('Location: /mvc_AdminLTE/?action=list&toast=updateSuccess');
         } else {
             $error = "Error al actualizar el usuario";
             echo $error;
@@ -32,7 +32,7 @@ switch ($action) {
         $clientController = new ClientController();
         $result = $clientController->deleteClient();
         if ($result) {
-            header('Location: /mvc_AdminLTE/?action=list');
+            header('Location: /mvc_AdminLTE/?action=list&toast=eliminationSuccess');
         } else {
             $error = "Error al eliminar el usuario";
             echo $error;

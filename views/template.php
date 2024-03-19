@@ -19,9 +19,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="views/style.css">
   <!-- <link rel="stylesheet" href="views/plugins/fontawesome-free/css/all.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="views/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="views/plugins/toastr/toastr.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="views/dist/css/adminlte.min.css">
 </head>
@@ -55,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="../../index.php" class="nav-link">
+              <a href="index.php" class="nav-link">
                 <i class="fa-solid fa-house"></i>
                 <p>
                   Inicio
@@ -81,7 +85,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div><!-- /.col -->
             <div class="col-sm-6">
               <div class="breadcrumb float-sm-right">
-                <a href="views/pages/createClient.php" role="button">Crear cliente</a>
+                <a href="views/pages/createClient.php" role="button">
+                  <button type="button" class="btn btn-success"">Crear Cliente</button>
+                </a>
               </div>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -90,33 +96,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.content-header -->
 
       <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Listado de clientes</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>Tipo de documentación</th>
-                        <th>Número de documento</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Persona de contacto</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      foreach ($clients as $client) {
-                        echo '
+      <section class=" content">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <h3 class="card-title">Listado de clientes</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>Tipo de documentación</th>
+                                    <th>Número de documento</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Persona de contacto</th>
+                                    <th>Acciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <?php
+                                  foreach ($clients as $client) {
+                                    echo '
                 <tr>
                     <td>' . $client['tipo_documento'] . '</td>
                     <td>' . $client['numero_documento'] . '</td>
@@ -129,73 +135,133 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="views/pages/updateClient.php?id=' . $client['numero_documento'] . '" role="button">
                     <i class="fa-regular fa-pen-to-square"></i>
                     </a> 
-                    <a href="?action=delete&id=' . $client['numero_documento'] . '">
+                    <a data-toggle="modal" data-target="#modal-delete" data-id = ' . $client['numero_documento'] . ' role="button" style="color: red">
                     <i class="fa-regular fa-trash-can"></i>
                     </a>
                     </td>
                 </tr>
                 ';
-                      } ?>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                      <tr>
-                        <th>Tipo de documentación</th>
-                        <th>Número de documento</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Persona de contacto</th>
-                        <th>Acciones</th>
-                      </tr>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-                <!-- /.card-body -->
+                                  } ?>
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                  <tr>
+                                    <th>Tipo de documentación</th>
+                                    <th>Número de documento</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Persona de contacto</th>
+                                    <th>Acciones</th>
+                                  </tr>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                    <div class="modal fade" id="modal-delete">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Eliminar cliente</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>¿Desea eliminar definitivamente el cliente?</p>
+                          </div>
+                          <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="confirmDelete">Aceptar</button>
+                          </div>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                    </section>
+                    <!-- /.content -->
               </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class=" control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+              </footer>
             </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+            <!-- ./wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-      <div class="p-3">
-        <h5>Title</h5>
-        <p>Sidebar content</p>
-      </div>
-    </aside>
-    <!-- /.control-sidebar -->
+            <!-- REQUIRED SCRIPTS -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="float-right d-none d-sm-inline">
-        Anything you want
-      </div>
-      <!-- Default to the left -->
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-  </div>
-  <!-- ./wrapper -->
+            <!-- jQuery -->
+            <script src="views/plugins/jquery/jquery.min.js"></script>
+            <!-- Bootstrap 4 -->
+            <script src="views/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- SweetAlert2 -->
+            <script src="views/plugins/sweetalert2/sweetalert2.min.js"></script>
+            <!-- Toastr -->
+            <script src="views/plugins/toastr/toastr.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="views/dist/js/adminlte.min.js"></script>
 
-  <!-- REQUIRED SCRIPTS -->
+            <?php
+            if (isset($_GET['toast']) && $_GET['toast'] == 'creationSuccess') {
+              echo "
+                    <script>
+                        toastr.success('El cliente se creo correctamente');
+                    </script>
+                  ";
+            } else if (isset($_GET['toast']) && $_GET['toast'] == 'updateSuccess') {
+              echo "
+                    <script>
+                        toastr.success('El cliente se actualizó correctamente');
+                    </script>
+                  ";
+            } else if (isset($_GET['toast']) && $_GET['toast'] == 'eliminationSuccess') {
+              echo "
+                    <script>
+                        toastr.success('El cliente se eliminó correctamente');
+                    </script>
+                  ";
+            }
+            ?>
+            <script>
+              $(document).on('show.bs.modal', '#modal-delete', function(event) {
+                var button = $(event.relatedTarget);
+                var idClient = button.data('id');
+                $("#confirmDelete").data('id', idClient);
+              });
 
-  <!-- jQuery -->
-  <script src="views/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="views/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="views/dist/js/adminlte.min.js"></script>
+              $("#confirmDelete").click(function() {
+                var idClient = $(this).data('id');
+                window.location.href = "./?action=delete&id=" + idClient;
+              });
+            </script>
 </body>
 
 </html>
